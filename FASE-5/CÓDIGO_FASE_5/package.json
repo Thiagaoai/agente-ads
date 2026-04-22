@@ -1,0 +1,46 @@
+{
+  "name": "marketing-squad",
+  "version": "1.0.0",
+  "description": "CMO + 11 AI Agents for autonomous marketing (Phase 5)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "node --test src/tests/*.test.js",
+    "logs": "journalctl -u marketing-squad -f",
+    "status": "systemctl status marketing-squad"
+  },
+  "keywords": [
+    "marketing",
+    "ai-agents",
+    "automation",
+    "cmo",
+    "copywriting",
+    "video",
+    "ads",
+    "seo",
+    "analytics"
+  ],
+  "author": "Roberts Automation",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "openai": "^4.24.0",
+    "axios": "^1.6.2",
+    "node-cron": "^3.0.2",
+    "winston": "^3.11.0",
+    "dotenv": "^16.3.1",
+    "lodash": "^4.17.21",
+    "uuid": "^9.0.1",
+    "p-queue": "^7.3.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.54.0",
+    "prettier": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}

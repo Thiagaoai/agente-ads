@@ -17,6 +17,9 @@ This is a **planning and documentation repository** (written in Portuguese) for 
 | `guia.final.md` | Final workflow summary |
 | `fase01.md` | Phase 1: Infrastructure (SDD + PRD + bash scripts) |
 | `fase02.md` | Phase 2: SDR Agent (SDD + PRD + Node.js code) |
+| `fase03.md` | Phase 3: Email + Calendar (SDD + PRD + Node.js code) |
+| `fase04.md` | Phase 4: Monitoring (SDD + PRD + Node.js code) |
+| `fase05.md` | Phase 5: Marketing Squad (SDD + PRD + 11 agents + Node.js code) |
 
 ## System Architecture (When Implemented)
 
@@ -41,7 +44,21 @@ The target system runs on a VPS (Ubuntu 22.04, "Hermes") as a 4-phase build:
 - LangSmith for LLM observability
 - Prometheus + Grafana dashboards
 
-**Data flow:** `Telegram command → Paperclip → Supabase query → Telegram response + journalctl log`
+**Phase 5 — Marketing Squad**
+- CMO Agent (port 3200) orchestrating 11 specialized agents
+- Strategist Agent: daily campaign planning (7am)
+- Copywriter Agent: ad copy generation via GPT-4o (every 4h)
+- Image Creator Agent: DALL-E 3 image generation (every 4h)
+- Video Creator Agent: Runway ML video generation (Mondays 9am)
+- Google Ads Agent: bid optimization + performance tracking (every 2h)
+- Meta Ads Agent: campaign management + audience creation (every 2h)
+- SEO Agent: keyword ranking + competitor analysis (every 12h)
+- Analytics Agent: performance metrics + insights (every 6h)
+- Developer Agent: landing page code generation (on-demand)
+- Supervisor Agent: QA + brand compliance + approval scoring (every hour)
+- Data flow: SDR leads (Phase 2) → campaigns → content generation → Supervisor approval → ads launch → Analytics → Telegram daily report
+
+**Data flow:** `Telegram command → Paperclip → Supabase query → Telegram response + journalctl log` (Phases 1-4) + `CMO Agent → 11 Marketing Agents → Campaign Pipeline → Real-time ads + Analytics` (Phase 5)
 
 ## Implementation Approach
 
@@ -56,6 +73,7 @@ When implementing, read the full phase document before writing any code. The scr
 
 ## Key External Services Required
 
+### Phases 1-4
 - **Supabase** — free tier sufficient; need `CONNECTION_STRING`
 - **Telegram** — bot token from @BotFather + operator user ID
 - **Apollo.io** — API key for Phase 2
@@ -63,3 +81,12 @@ When implementing, read the full phase document before writing any code. The scr
 - **SendGrid** — API key for Phase 3
 - **Google Calendar** — OAuth credentials for Phase 3
 - **LangSmith** — API key for Phase 4
+
+### Phase 5 (Marketing Squad)
+- **OpenAI** — API key for GPT-4o (Strategist, Copywriter, Developer, Supervisor agents); `OPENAI_API_KEY`
+- **OpenAI DALL-E 3** — included with OpenAI API key; used by Image Creator Agent
+- **Meta** — Access Token for Meta Ads API v19; `META_ACCESS_TOKEN`, `META_AD_ACCOUNT_ID`, `META_PIXEL_ID`
+- **Runway ML** — API key for video generation; `RUNWAY_API_KEY`
+- **SEMrush** — API key for SEO tracking and competitor analysis; `SEMRUSH_API_KEY`
+- **Cloudinary** — cloud storage for generated content; `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`
+- **Google Ads** (reuse from Phase 2) — already configured; used by Google Ads Agent in Phase 5

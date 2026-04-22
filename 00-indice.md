@@ -39,6 +39,13 @@ FASE-1-4-COMPLETE/
 │   ├── CHECKLIST_FASE_4.md
 │   └── DEBUGGER_FASE_4.md
 │
+├── FASE-5/
+│   ├── SDD_FASE_5.md (Marketing Squad 11 agents)
+│   ├── PRD_FASE_5.md (11 features FR-5.1 to FR-5.11)
+│   ├── CÓDIGO_FASE_5/ (12 arquivos Node.js prontos)
+│   ├── CHECKLIST_FASE_5.md (7 implementation waves)
+│   └── DEBUGGER_FASE_5.md
+│
 ├── GUIAS/
 │   ├── ROADMAP_COMPLETO.md
 │   ├── COMO_USAR_IDEs.md
@@ -80,8 +87,14 @@ FASE 4: Monitoring + Ops (3-5 dias)
 ├─ Você: configurar dashboards (30 min)
 └─ Total: ~3 horas trabalho ativo
 
-TEMPO TOTAL SUAS MÃOS: ~2-3 horas (em 3-4 semanas)
-TEMPO CURSOR AUTOMÁTICO: ~9 horas (spread across)
+FASE 5: Marketing Squad (18-20 dias)
+├─ Seu tempo: 45 min (gerar API keys)
+├─ Cursor time: ~12 horas automático (6 waves)
+├─ Você: testes E2E + aprovação (2h)
+└─ Total: ~15 horas trabalho ativo
+
+TEMPO TOTAL SUAS MÃOS: ~3-4 horas (em 5-6 semanas)
+TEMPO CURSOR AUTOMÁTICO: ~21 horas (spread across)
 ```
 
 ---
@@ -119,6 +132,16 @@ TEMPO CURSOR AUTOMÁTICO: ~9 horas (spread across)
 ✅ Performance metrics
 ✅ Auto-scaling agents
 **Resultado:** Sistema pronto para produção
+
+### **FASE 5: Marketing Squad**
+✅ 11 agentes de IA especializados
+✅ CMO Orchestrator (porta 3200)
+✅ Strategist, Copywriter, Image Creator, Video Creator
+✅ Google Ads Agent, Meta Ads Agent
+✅ Analytics Agent, SEO Agent
+✅ Developer Agent, Supervisor Agent
+✅ Campanhas automatizadas + anúncios pagos + análise de performance
+**Resultado:** Equipe de marketing autônoma 24/7
 
 ---
 
@@ -198,6 +221,16 @@ Mesmo processo que FASE 2, mas pasta FASE-3/
 Mesmo processo que FASE 2, mas pasta FASE-4/
 ```
 
+### **DIA 23-42: FASE 5 (Marketing Squad)**
+```
+1. Abra: FASE-5/SDD_FASE_5.md
+2. Abra: FASE-5/PRD_FASE_5.md
+3. Abra: FASE-5/CÓDIGO_FASE_5/
+4. Copie arquivos para Cursor
+5. Execute 6 waves de implementação
+6. Se erro: FASE-5/DEBUGGER_FASE_5.md
+```
+
 ---
 
 ## ✅ CHECKLIST GERAL
@@ -244,12 +277,30 @@ FASE 4:
 ☐ Configurar dashboards (30 min)
 ☐ Marcar FASE 4 como COMPLETA
 
+FASE 5:
+☐ Ler SDD_FASE_5.md
+☐ Ler PRD_FASE_5.md
+☐ Gerar API keys (OpenAI, Meta, Runway, SEMrush) (20 min)
+☐ Copiar CÓDIGO_FASE_5 para Cursor
+☐ Wave 1: integrations + config + utils (3 dias)
+☐ Wave 2: Supervisor + Strategist + Analytics agents (2 dias)
+☐ Wave 3: Copywriter + Image Creator agents (3 dias)
+☐ Wave 4: Google Ads + Meta Ads agents (4 dias)
+☐ Wave 5: SEO + Developer + Video Creator agents (4 dias)
+☐ Wave 6: CMO Agent + orchestration (2 dias)
+☐ Testes E2E + verificação (1 dia)
+☐ Deploy systemd marketing-squad.service (1 dia)
+☐ Marcar FASE 5 como COMPLETA
+
 SISTEMA PRONTO:
 ☐ Tudo rodando 24/7
-☐ Leads sendo coletados
-☐ Emails sendo enviados
-☐ Calls sendo agendadas
-☐ Métricas em tempo real
+☐ Leads sendo coletados (FASE 2)
+☐ Emails sendo enviados (FASE 3)
+☐ Calls sendo agendadas (FASE 3)
+☐ Campanhas de marketing automatizadas (FASE 5)
+☐ Anúncios Google + Meta em tempo real (FASE 5)
+☐ Análise de performance automática (FASE 5)
+☐ Métricas em tempo real (FASE 4)
 ☐ 🎉 PRONTO PARA PRODUÇÃO
 ```
 

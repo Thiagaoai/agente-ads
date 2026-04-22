@@ -487,6 +487,239 @@ Se Grafana não mostrando dados:
 
 ---
 
+## 🎯 FASE 5: MARKETING SQUAD (Dias 23-42)
+
+### Objetivo
+```
+Ter 11 agentes de IA especializados criando campanhas, conteúdo, anúncios pagos e análise automática
+CMO orquestrando todo time de marketing 24/7 com aprovação automática do Supervisor
+```
+
+### Timeline
+```
+Total: ~20 horas (spread em 20 dias)
+├─ Seu tempo: 45 min
+│  ├─ OpenAI setup (5 min)
+│  ├─ Meta Ads setup (10 min)
+│  ├─ Runway ML setup (5 min)
+│  ├─ SEMrush setup (5 min)
+│  ├─ Cloudinary setup (5 min)
+│  └─ Testes (10 min)
+└─ Cursor: 12 horas
+   ├─ Wave 1: Integrations (6h)
+   ├─ Wave 2: Core agents (4h)
+   ├─ Waves 3-5: Specialized agents (6h)
+   └─ Wave 6: CMO + orchestration (2h)
+```
+
+### 6 Implementation Waves
+```
+WAVE 1 (Dias 1-3): Integrations + Config
+├─ src/config.js (OpenAI, Meta, Runway, SEMrush, Cloudinary)
+├─ src/integrations/ (5 files)
+├─ src/utils/ (logger, brand-guidelines)
+└─ package.json + node_modules
+
+WAVE 2 (Dias 3-5): Core Agents
+├─ Supervisor Agent (approval + brand checks)
+├─ Strategist Agent (campaign planning)
+├─ Analytics Agent (performance tracking)
+└─ Database tables (campaigns, content_pieces, ad_sets)
+
+WAVE 3 (Dias 5-8): Content Creation
+├─ Copywriter Agent (DALL-E 3)
+├─ Image Creator Agent (text→image)
+└─ Landing Page Generator
+
+WAVE 4 (Dias 8-12): Paid Ads
+├─ Google Ads Agent (using Phase 2 creds)
+├─ Meta Ads Agent (new credentials)
+└─ Live campaign management
+
+WAVE 5 (Dias 12-16): Enhancement
+├─ SEO Agent (keyword tracking, optimization)
+├─ Developer Agent (landing page code)
+├─ Video Creator Agent (Runway ML, Mondays)
+
+WAVE 6 (Dias 16-18): Orchestration
+├─ CMO Agent (port 3200, Telegram reports)
+├─ index.js (scheduler wiring)
+├─ systemd marketing-squad.service
+└─ End-to-end testing
+```
+
+### Checklist
+```
+[ ] Ler FASE-5/SDD_FASE_5.md (15 min)
+[ ] Ler FASE-5/PRD_FASE_5.md (15 min)
+[ ] Criar OpenAI account (5 min)
+    └─ Copiar: OPENAI_API_KEY
+[ ] Criar Meta Ads account (10 min)
+    └─ Copiar: META_ACCESS_TOKEN, META_AD_ACCOUNT_ID, META_PIXEL_ID
+[ ] Criar Runway ML account (5 min)
+    └─ Copiar: RUNWAY_API_KEY
+[ ] Criar SEMrush account (5 min)
+    └─ Copiar: SEMRUSH_API_KEY
+[ ] Criar Cloudinary account (5 min)
+    └─ Copiar: CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY
+[ ] Copiar FASE-5/CÓDIGO_FASE_5/ → seu diretório (5 min)
+[ ] Rodar setup-phase5.sh (10 min)
+    └─ Instala: openai, meta-ads-api, runway, semrush, cloudinary
+[ ] WAVE 1: Integrations (3 dias, Cursor automático)
+    └─ Cria: config.js, 5 integration files, utils
+[ ] WAVE 2: Core Agents (2 dias, Cursor automático)
+    └─ Cria: Supervisor, Strategist, Analytics agents
+    └─ Cria: 3 database tables
+[ ] WAVE 3: Content Agents (3 dias, Cursor automático)
+    └─ Cria: Copywriter, Image Creator, Landing Page agents
+    └─ Cria: content_pieces, landing_pages tables
+[ ] WAVE 4: Ads Agents (4 dias, Cursor automático)
+    └─ Cria: Google Ads, Meta Ads agents
+    └─ Cria: ad_sets, performance_metrics tables
+[ ] WAVE 5: Enhancement (4 dias, Cursor automático)
+    └─ Cria: SEO, Developer, Video Creator agents
+    └─ Cria: seo_keywords table
+[ ] WAVE 6: CMO + Orchestration (2 dias, Cursor automático)
+    └─ Cria: CMO Agent, index.js scheduler
+    └─ Cria: systemd service file
+    └─ Testes E2E completos
+[ ] Você testa (1 dia)
+    └─ Verificar first Strategist cycle
+    └─ Verificar Copywriter generation
+    └─ Verificar Supervisor approval
+    └─ Verificar Analytics report
+    └─ Verificar ads launching
+[ ] ✅ ASSINAR: FASE 5 COMPLETA
+```
+
+### Features (FR-5.1 through FR-5.11)
+```
+FR-5.1: CMO Agent (Orchestrator)
+        └─ Daily report at 7am
+        └─ Telegram notifications
+        └─ Agent coordination
+        └─ Error handling + retry
+
+FR-5.2: Strategist Agent
+        └─ Daily campaign planning (7am)
+        └─ 30-day strategy
+        └─ Budget allocation
+        └─ Audience segmentation
+
+FR-5.3: Copywriter Agent
+        └─ Every 4 hours
+        └─ Generates 5 ad copy variants
+        └─ A/B testing ready
+        └─ GPT-4o quality
+
+FR-5.4: Image Creator Agent
+        └─ Every 4 hours
+        └─ DALL-E 3 generation
+        └─ Brand guidelines adherence
+        └─ Multiple variations
+
+FR-5.5: Video Creator Agent
+        └─ Mondays 9am
+        └─ Runway ML integration
+        └─ 15-30 second videos
+        └─ Auto-captions
+
+FR-5.6: Google Ads Agent
+        └─ Every 2 hours
+        └─ Bid optimization
+        └─ Keyword monitoring
+        └─ Live performance tracking
+
+FR-5.7: Meta Ads Agent
+        └─ Every 2 hours
+        └─ Campaign management
+        └─ Pixel tracking
+        └─ Audience lookalike creation
+
+FR-5.8: SEO Agent
+        └─ Every 12 hours
+        └─ Keyword ranking tracking
+        └─ Competitor analysis
+        └─ Content optimization
+
+FR-5.9: Analytics Agent
+        └─ Every 6 hours
+        └─ Performance metrics aggregation
+        └─ Insights generation
+        └─ ROAS calculation
+
+FR-5.10: Developer Agent
+        └─ On-demand
+        └─ Landing page code generation
+        └─ Form integration
+        └─ Analytics tracking
+
+FR-5.11: Supervisor Agent
+        └─ Every hour (QA)
+        └─ Brand compliance check
+        └─ Content approval scoring (1-10)
+        └─ Error flagging + alerts
+```
+
+### Entrega
+```
+✅ 11 agentes rodando 24/7
+✅ CMO orquestrando time
+✅ Campanhas criadas automaticamente
+✅ Conteúdo (copy, imagens, vídeos) gerado
+✅ Anúncios Google + Meta lançando
+✅ SEO tracking + otimização
+✅ Analytics em tempo real
+✅ Supervisor aprovando tudo
+✅ Telegram reports diários
+✅ Sistema 100% autônomo
+✅ ROAS tracking
+✅ A/B testing automático
+```
+
+### IDE + Modelo
+```
+IDE: Cursor Max (multi-agent orchestration)
+Modelo: Claude 4 ou Claude 3.5 Sonnet
+Motivo: 11 agentes complexos, múltiplas APIs, async scheduling
+RECOMENDAÇÃO: Claude 4 para máxima qualidade em lógica distribuída
+```
+
+### Debugger incluído
+```
+Se OpenAI rate limit:
+├─ Usar exponential backoff
+├─ Verificar OPENAI_API_KEY quota
+├─ Testar: curl https://api.openai.com/v1/models
+└─ Fallback: retentar em 60 segundos
+
+Se Meta API unauthorized:
+├─ Validar META_ACCESS_TOKEN
+├─ Verificar ad account permissions
+├─ Testar: npm run test:meta-ads
+└─ Reset token em Meta Business Suite
+
+Se DALL-E timeout:
+├─ Implementar 3-minute timeout
+├─ Usar legacy image fallback
+├─ Validar quota
+└─ Ver logs: journalctl -u marketing-squad -f
+
+Se Runway ML video encoding fails:
+├─ Validar RUNWAY_API_KEY
+├─ Verificar input video format
+├─ Testar: npm run test:runway
+└─ Usar fallback: enviar aviso Telegram
+
+Se Supervisor não aprovando:
+├─ Verificar scoring lógica
+├─ Validar brand guidelines
+├─ Testar: npm run test:supervisor
+└─ Revisar approvals table
+```
+
+---
+
 ## 🎪 SUMÁRIO TODAS AS FASES
 
 | Fase | Objetivo | Seu tempo | Cursor | Total | Status |
@@ -495,33 +728,41 @@ Se Grafana não mostrando dados:
 | 2 | SDR Agent | 30 min | 4h | ~8h | ✅ |
 | 3 | Email + Calendar | 20 min | 3h | ~5h | ✅ |
 | 4 | Monitoring | 15 min | 2h | ~3h | ✅ |
-| **TOTAL** | **ZERO TO HERO** | **~2.5h** | **~9h** | **~3-4 sem** | **✅** |
+| 5 | Marketing Squad | 45 min | 12h | ~20h | ✅ |
+| **TOTAL** | **ZERO TO HERO** | **~2h** | **~21h** | **~5-6 sem** | **✅** |
 
 ---
 
 ## 📊 RESULTADO FINAL
 
-Depois de completar todas as 4 fases, você terá:
+Depois de completar todas as 5 fases, você terá:
 
 ```
 SISTEMA OPERACIONAL:
-✅ Paperclip orquestrando 24/7
-✅ 4 agentes independentes
-✅ 3 integrações principales (Apollo, Google, SendGrid)
-✅ Supabase com dados em tempo real
-✅ Telegram bot para operações
+✅ Paperclip orquestrando 24/7 (port 3100)
+✅ CMO Agent orquestrando marketing (port 3200)
+✅ 15 agentes independentes (4 fases SDR/Email + 11 fases marketing)
+✅ 8 integrações principais (Apollo, Google, SendGrid, OpenAI, Meta, Runway, SEMrush, Cloudinary)
+✅ Supabase com 20+ tabelas em tempo real
+✅ Telegram bot para operações + daily reports
 ✅ Logs centralizados + monitoring
-✅ Alertas automáticos
-✅ Dashboards Grafana
+✅ Alertas automáticos 24/7
+✅ Dashboards Grafana com métricas
 
 RESULTADOS DE NEGÓCIO:
-✅ 50+ leads coletados por dia
-✅ 30+ emails enviados por dia
-✅ 10+ calls agendados por dia
-✅ 40%+ email open rate
-✅ 20%+ calendar acceptance rate
-✅ 5%+ conversion rate (leads → deals)
-✅ Sistema 99.9% disponível
+✅ 50+ leads coletados por dia (FASE 2)
+✅ 30+ emails enviados por dia (FASE 3)
+✅ 10+ calls agendados por dia (FASE 3)
+✅ 40%+ email open rate (FASE 3)
+✅ 20%+ calendar acceptance rate (FASE 3)
+✅ 5%+ conversion rate (leads → deals) (FASE 3)
+✅ 20+ campanhas de marketing por mês (FASE 5)
+✅ 100+ anúncios lançados por semana (FASE 5)
+✅ 2-3% CTR em anúncios pagos (FASE 5)
+✅ 3-5x ROAS em campanhas otimizadas (FASE 5)
+✅ Videos, landing pages, copy gerados automaticamente (FASE 5)
+✅ SEO tracking + content optimization (FASE 5)
+✅ Sistema 99.9% disponível + 100% uptime marketing
 
 INFRAESTRUTURA:
 ✅ VPS dedicada (Hermes)
@@ -531,6 +772,7 @@ INFRAESTRUTURA:
 ✅ Disaster recovery plan
 ✅ Security hardened
 ✅ Pronto para produção
+✅ Marketing squad autônomo 24/7
 ```
 
 ---
