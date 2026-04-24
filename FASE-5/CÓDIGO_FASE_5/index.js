@@ -4,6 +4,8 @@ import config from './src/config.js';
 import logger from './src/utils/logger.js';
 import { registerAgents } from './src/agents/registry.js';
 import { startTelegramBot } from './src/telegram/bot.js';
+import { routeWebhook } from './src/webhooks/handler.js';
+import { renderMetrics, incCounter } from './src/monitoring/prometheus.js';
 
 const startedAt = new Date();
 const agents = await registerAgents();
@@ -23,8 +25,10 @@ for (const [name, agent] of Object.entries(agents)) {
     logger.info({ runId, agent: name }, 'agent.run.start');
     try {
       await agent.run();
+      incCounter('agent_runs_total', { agent: name });
       logger.info({ runId, agent: name }, 'agent.run.ok');
     } catch (err) {
+      incCounter('agent_failures_total', { agent: name });
       logger.error({ runId, agent: name, err: err.message }, 'agent.run.fail');
     }
   });
@@ -34,6 +38,13 @@ for (const [name, agent] of Object.entries(agents)) {
 }
 
 const server = http.createServer((req, res) => {
+  if (req.url.startsWith('/webhooks/')) {
+    const chunks = [];
+    req.on('data', (c) => chunks.push(c));
+    req.on('end', () => routeWebhook(req, res, Buffer.concat(chunks).toString('utf8')));
+    return;
+  }
+
   if (req.url === '/health') {
     const uptime = Math.floor((Date.now() - startedAt.getTime()) / 1000);
     res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -45,6 +56,14 @@ const server = http.createServer((req, res) => {
       client_id: process.env.CLIENT_ID || 'unset',
       started_at: startedAt.toISOString(),
     }));
+    return;
+  }
+
+  if (req.url === '/metrics') {
+    renderMetrics(agents).then((body) => {
+      res.writeHead(200, { 'Content-Type': 'text/plain; version=0.0.4' });
+      res.end(body);
+    }).catch(() => { res.writeHead(500); res.end(); });
     return;
   }
 

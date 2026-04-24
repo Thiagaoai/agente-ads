@@ -8,6 +8,8 @@
     "start": "node index.js",
     "dev": "node --watch index.js",
     "test": "node --test src/tests/*.test.js",
+    "sdr:run": "node -e \"import('./src/agents/sdr-agent.js').then(m => new m.SdrAgent().run().then(console.log))\"",
+    "outreach:run": "node -e \"import('./src/agents/outreach-agent.js').then(m => new m.OutreachAgent().run().then(console.log))\"",
     "logs": "journalctl -u marketing-squad -f",
     "status": "systemctl status marketing-squad"
   },

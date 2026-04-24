@@ -12,7 +12,7 @@ test('registry exposes 11 agents', async () => {
   const { registerAgents } = await import('../agents/registry.js');
   const agents = await registerAgents();
   assert.equal(Object.keys(agents).length, 11);
-  for (const name of ['cmo', 'strategist', 'copywriter', 'supervisor', 'metaAdsAgent', 'googleAdsAgent']) {
+  for (const name of ['cmo', 'strategist', 'copywriter', 'supervisor', 'metaAdsAgent', 'googleAdsAgent', 'imageCreator', 'videoCreator', 'seoAgent', 'analyticsAgent', 'developerAgent']) {
     assert.ok(agents[name], `missing agent: ${name}`);
   }
 });
@@ -34,29 +34,21 @@ test('base agent tracks status on run/fail', async () => {
   assert.equal(bad.lastError, 'boom');
 });
 
+test('scheduling keys align with registry names', async () => {
+  const { default: config } = await import('../config.js');
+  const { registerAgents } = await import('../agents/registry.js');
+  const agents = await registerAgents();
+  for (const key of Object.keys(config.scheduling)) {
+    assert.ok(agents[key], `scheduling key "${key}" has no matching agent in registry`);
+  }
+});
+
 test('cron expressions in config are valid', async () => {
   const cron = (await import('node-cron')).default;
   const { default: config } = await import('../config.js');
   for (const [name, expr] of Object.entries(config.scheduling)) {
     if (expr === 'onDemand') continue;
     assert.ok(cron.validate(expr), `invalid cron for ${name}: ${expr}`);
-  }
-});
-
-test('stub agents return { stub: true }', async () => {
-  const { StrategistAgent } = await import('../agents/stubs.js');
-  const a = new StrategistAgent();
-  const result = await a.run();
-  assert.deepEqual(result, { stub: true });
-});
-
-test('real agents (non-stub) are implemented', async () => {
-  const { registerAgents } = await import('../agents/registry.js');
-  const agents = await registerAgents();
-  const realNames = ['copywriter', 'supervisor', 'metaAdsAgent', 'imageCreator', 'googleAdsAgent', 'analyticsAgent'];
-  for (const name of realNames) {
-    assert.ok(agents[name], `missing: ${name}`);
-    assert.notEqual(agents[name].constructor.name, 'StubAgent', `${name} is still a stub`);
   }
 });
 
@@ -75,9 +67,17 @@ test('ImageCreator buildPrompt produces valid prompt with guidelines', async () 
   assert.match(prompt, /quality/);
 });
 
-test('AnalyticsAgent buildDailyReport handles empty metrics gracefully', async () => {
-  const { AnalyticsAgent } = await import('../agents/analytics-agent.js');
-  const agent = new AnalyticsAgent();
-  assert.equal(typeof agent.buildDailyReport, 'function');
-  assert.equal(typeof agent.pullMetrics, 'function');
+test('DeveloperAgent slugify is URL-safe', async () => {
+  const { DeveloperAgent } = await import('../agents/developer-agent.js');
+  const agent = new DeveloperAgent();
+  assert.equal(agent.slugify('CONVERSIONS-abc12345'), 'conversions-abc12345');
+  assert.equal(agent.slugify('  Hello World!  '), 'hello-world');
+});
+
+test('CmoAgent starts without registry and warns', async () => {
+  const { CmoAgent } = await import('../agents/cmo-agent.js');
+  const agent = new CmoAgent();
+  assert.equal(agent.registry, null);
+  const result = await agent.run();
+  assert.deepEqual(result, { orchestrated: 0 });
 });

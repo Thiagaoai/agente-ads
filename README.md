@@ -107,8 +107,22 @@ Telegram operator
 
 ## Phases
 
-- **Phase 1–4** — infra, SDR, email, monitoring (planning in `fase01.md`, `fase02.md`)
-- **Phase 5** — Marketing Squad (this is what runs in `FASE-5/CÓDIGO_FASE_5/`)
+All phases have runnable code under `FASE-5/CÓDIGO_FASE_5/src/`:
+
+- **Phase 2 · SDR** — `agents/sdr-agent.js` + `integrations/apollo.js`. Run: `npm run sdr:run`. Writes to `leads` table.
+- **Phase 3 · Outreach + Calendar** — `agents/outreach-agent.js` + `integrations/sendgrid.js` + `integrations/google-calendar.js`. Run: `npm run outreach:run`. Enrolls leads via `email_sequences`.
+- **Phase 4 · Monitoring** — `/metrics` endpoint (Prometheus format) + LangSmith tracer at `integrations/langsmith.js`. Scrape from Prometheus or hit `curl localhost:3200/metrics`.
+- **Phase 5 · Marketing Squad** — 11 agents, scheduler, Telegram bot. The default `node index.js` runs Phase 5 only; Phase 2/3 run on-demand via `npm run`.
+
+## Webhooks
+
+Endpoints exposed by `index.js`:
+
+- `GET /webhooks/meta?hub.mode=subscribe&...` — Meta verification handshake
+- `POST /webhooks/meta` — Meta signed callbacks (ad review, insights alerts)
+- `POST /webhooks/google` — Google Ads alerts (requires `X-Google-Webhook-Token` header)
+
+Register both at the provider dashboards using your public URL.
 
 ## License
 

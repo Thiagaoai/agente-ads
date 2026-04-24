@@ -4,17 +4,16 @@ import { MetaAdsAgent } from './meta-ads-agent.js';
 import { ImageCreatorAgent } from './image-creator.js';
 import { GoogleAdsAgent } from './google-ads-agent.js';
 import { AnalyticsAgent } from './analytics-agent.js';
-import {
-  StrategistAgent,
-  VideoCreatorAgent,
-  SeoAgent,
-  DeveloperAgent,
-  CmoAgent,
-} from './stubs.js';
+import { StrategistAgent } from './strategist.js';
+import { VideoCreatorAgent } from './video-creator.js';
+import { SeoAgent } from './seo-agent.js';
+import { DeveloperAgent } from './developer-agent.js';
+import { CmoAgent } from './cmo-agent.js';
 
 export async function registerAgents() {
-  return {
-    cmo: new CmoAgent(),
+  const cmo = new CmoAgent();
+  const agents = {
+    cmo,
     strategist: new StrategistAgent(),
     copywriter: new CopywriterAgent(),
     imageCreator: new ImageCreatorAgent(),
@@ -26,4 +25,6 @@ export async function registerAgents() {
     supervisor: new SupervisorAgent(),
     developerAgent: new DeveloperAgent(),
   };
+  cmo.setRegistry(agents);
+  return agents;
 }

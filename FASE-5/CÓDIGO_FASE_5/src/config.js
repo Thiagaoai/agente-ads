@@ -69,17 +69,18 @@ export const config = {
     channelId: process.env.TELEGRAM_CHANNEL_ID,
   },
 
-  // Agent scheduling (cron expressions)
+  // Agent scheduling (cron expressions) — keys MUST match registry names
   scheduling: {
+    cmo: '0 */1 * * *', // Every hour (orchestrator)
     strategist: '0 7 * * *', // Daily at 7am
     copywriter: '0 */4 * * *', // Every 4 hours
-    imageCreator: '0 */4 * * *', // Every 4 hours
+    imageCreator: '15 */4 * * *', // Every 4h (offset 15min from copy)
     videoCreator: '0 9 * * 1', // Mondays at 9am
     googleAdsAgent: '0 */2 * * *', // Every 2 hours
-    metaAdsAgent: '0 */2 * * *', // Every 2 hours
+    metaAdsAgent: '30 */2 * * *', // Every 2h (offset 30min from google)
     seoAgent: '0 */12 * * *', // Every 12 hours
     analyticsAgent: '0 */6 * * *', // Every 6 hours
-    supervisorAgent: '0 * * * *', // Every hour
+    supervisor: '30 * * * *', // Every hour (offset 30min from cmo)
     developerAgent: 'onDemand', // On-demand via Telegram
   },
 
