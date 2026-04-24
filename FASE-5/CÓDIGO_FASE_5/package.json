@@ -1,28 +1,25 @@
 {
-  "name": "marketing-squad",
+  "name": "agente-ads",
   "version": "1.0.0",
-  "description": "CMO + 11 AI Agents for autonomous marketing (Phase 5)",
+  "description": "Autonomous Meta Ads + Google Ads automation (11 AI agents, Telegram-controlled)",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch index.js",
     "test": "node --test src/tests/*.test.js",
-    "sdr:run": "node -e \"import('./src/agents/sdr-agent.js').then(m => new m.SdrAgent().run().then(console.log))\"",
-    "outreach:run": "node -e \"import('./src/agents/outreach-agent.js').then(m => new m.OutreachAgent().run().then(console.log))\"",
-    "logs": "journalctl -u marketing-squad -f",
-    "status": "systemctl status marketing-squad"
+    "logs": "journalctl -u agente-ads -f",
+    "status": "systemctl status agente-ads"
   },
   "keywords": [
-    "marketing",
+    "meta-ads",
+    "google-ads",
+    "ads-automation",
     "ai-agents",
-    "automation",
-    "cmo",
+    "paid-media",
     "copywriting",
-    "video",
-    "ads",
-    "seo",
-    "analytics"
+    "dalle",
+    "runway"
   ],
   "author": "Roberts Automation",
   "license": "MIT",

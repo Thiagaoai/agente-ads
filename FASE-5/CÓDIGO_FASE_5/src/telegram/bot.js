@@ -26,7 +26,7 @@ export async function startTelegramBot(agents) {
   bot.onText(/^\/start/, (msg) => {
     if (!guard(msg)) return;
     bot.sendMessage(msg.chat.id,
-      `🤖 *Marketing Squad* (${process.env.CLIENT_ID ?? 'unset'})\n\nComandos:\n/status — estado dos 11 agentes\n/campaigns — campanhas ativas\n/campaign <id> — detalhes\n/approve <id> — libera assets aprovados\n/pause <id> — pausa campanha\n/budget <id> <valor> — ajusta orçamento\n/report — força relatório agora\n/run <agent> — roda agente on-demand`,
+      `🤖 *Agente-Ads* · Meta + Google (${process.env.CLIENT_ID ?? 'unset'})\n\nComandos:\n/status — estado dos 11 agentes\n/campaigns — campanhas ativas\n/campaign <id> — detalhes\n/approve <id> — libera assets aprovados\n/pause <id> — pausa campanha\n/budget <id> <valor> — ajusta orçamento\n/run <agent> — roda agente on-demand`,
       { parse_mode: 'Markdown' });
   });
 

@@ -1,13 +1,13 @@
 [Unit]
-Description=Marketing Squad · CMO + 11 AI Agents (Phase 5)
+Description=Agente-Ads · Meta Ads + Google Ads autonomous agents
 Documentation=https://github.com/Thiagaoai/agente-ads
-After=network-online.target paperclip.service
+After=network-online.target
 Wants=network-online.target
 
 [Service]
 Type=simple
-User=marketing
-Group=marketing
+User=agente-ads
+Group=agente-ads
 WorkingDirectory=/opt/agente-ads/FASE-5/CÓDIGO_FASE_5
 EnvironmentFile=/opt/agente-ads/FASE-5/CÓDIGO_FASE_5/.env
 ExecStart=/usr/bin/node index.js
@@ -19,13 +19,13 @@ StartLimitIntervalSec=300
 
 StandardOutput=journal
 StandardError=journal
-SyslogIdentifier=marketing-squad
+SyslogIdentifier=agente-ads
 
 NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/var/log/marketing-squad
+ReadWritePaths=/var/log/agente-ads
 
 LimitNOFILE=65536
 MemoryMax=1G
