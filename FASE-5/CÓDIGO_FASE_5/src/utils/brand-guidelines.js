@@ -257,4 +257,19 @@ export const validateAgainstBrandGuidelines = (content, contentType) => {
   };
 };
 
+export async function getBrandGuidelines(clientId) {
+  try {
+    const { supabase } = await import('../integrations/supabase.js');
+    const { data } = await supabase
+      .from('brand_guidelines')
+      .select('guidelines')
+      .eq('client_id', clientId)
+      .maybeSingle();
+    if (data?.guidelines) return data.guidelines;
+  } catch {
+    // fall through to static default
+  }
+  return brandGuidelines;
+}
+
 export default brandGuidelines;

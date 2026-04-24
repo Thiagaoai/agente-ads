@@ -16,6 +16,7 @@ export const campaigns = {
           name: campaignData.name,
           objective: campaignData.objective || 'REACH',
           status: 'PAUSED',
+          daily_budget: campaignData.daily_budget_cents,
           access_token: config.meta.accessToken,
         }
       );

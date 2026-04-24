@@ -58,4 +58,5 @@ ${content}`;
   }
 };
 
+export { openai };
 export default openai;

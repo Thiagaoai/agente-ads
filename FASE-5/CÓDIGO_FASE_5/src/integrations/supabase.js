@@ -262,4 +262,5 @@ export const marketingLeads = {
   },
 };
 
+export { supabase };
 export default supabase;
